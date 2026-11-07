@@ -3,7 +3,7 @@ import cors from "cors";
 import pinoHttp from "pino-http";
 import router from "./routes";
 import { logger } from "./lib/logger";
-import { botLandingPage } from "./site";
+import { appPage, botLandingPage } from "./site";
 
 const app: Express = express();
 
@@ -32,6 +32,10 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (_req, res) => {
   res.status(200).type("html").send(botLandingPage);
+});
+
+app.get("/app", (_req, res) => {
+  res.status(200).type("html").send(appPage);
 });
 
 app.use("/api", router);
